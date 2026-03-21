@@ -1,0 +1,42 @@
+// LAB 1: Control de LED Digital 
+// Programa clásico Blink 
+ 
+const int LED_PIN = 13;   // Pin donde conectamos el LED 
+ 
+void setup() { 
+  pinMode(LED_PIN, OUTPUT);   // Configurar pin como salida 
+  Serial.begin(9600);          // Iniciar comunicación serial 
+} 
+ 
+void loop() { 
+  digitalWrite(LED_PIN, HIGH); // Encender LED 
+  Serial.println("LED: ON"); 
+  delay(1000);                 // Esperar 1 segundo 
+ 
+  digitalWrite(LED_PIN, LOW);  // Apagar LED 
+  Serial.println("LED: OFF"); 
+  delay(1000);                 // Esperar 1 segundo 
+} 
+
+/ LAB 1 - VARIACIÓN: Parpadeo con patrón SOS (Morse) 
+ 
+const int LED = 13; 
+ 
+void dot()   { digitalWrite(LED,HIGH); delay(200); digitalWrite(LED,LOW); 
+delay(200); } 
+void dash()  { digitalWrite(LED,HIGH); delay(600); digitalWrite(LED,LOW); 
+delay(200); } 
+void space() { delay(600); } 
+ 
+void setup() { pinMode(LED, OUTPUT); } 
+ 
+void loop() { 
+  // S = ... 
+  dot(); dot(); dot(); space(); 
+  // O = --- 
+  dash(); dash(); dash(); space(); 
+  // S = ... 
+dot(); dot(); dot(); 
+delay(2000); 
+
+}
