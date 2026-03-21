@@ -1,0 +1,28 @@
+// LAB 3: Sensor de Luz KY-018 
+// Sistema de iluminación automática 
+ 
+const int LDR_PIN = A0; 
+const int LED_PIN = 9; 
+const int UMBRAL  = 400;  // Umbral de oscuridad (ajustar según ambiente) 
+ 
+void setup() { 
+  pinMode(LED_PIN, OUTPUT); 
+ Serial.begin(9600); 
+  Serial.println("Sensor\tPorcentaje\tEstado"); 
+} 
+ 
+void loop() { 
+  int  raw     = analogRead(LDR_PIN); 
+  int  percent = map(raw, 0, 1023, 0, 100); 
+  bool oscuro  = (raw < UMBRAL); 
+ 
+  digitalWrite(LED_PIN, oscuro ? HIGH : LOW); 
+ 
+  Serial.print(raw); 
+  Serial.print("\t"); 
+  Serial.print(percent); 
+  Serial.print("%\t"); 
+  Serial.println(oscuro ? "OSCURO - LED ON" : "LUZ - LED OFF"); 
+ 
+  delay(500); 
+} 
